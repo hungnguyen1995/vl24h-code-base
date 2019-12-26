@@ -3,9 +3,9 @@ import { combineReducers } from "redux";
 // #endregion Global Imports
 
 // #region Local Imports
-import { HomeReducer } from "./home";
+import { ApiReducer } from "./Api";
 // #endregion Local Imports
 
 export default combineReducers({
-    home: HomeReducer,
+    api: ApiReducer,
 });

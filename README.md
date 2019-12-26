@@ -29,6 +29,9 @@ next-boilerplate project provides a lot of features out of the box. Here's an ov
 * **next-i18next** - Support multi lang.
 
 <br/>
+<div>
+ <img width="600" src="./boilerplate-cli.gif" >
+</div>
 
     ~ $ npm run cli
 

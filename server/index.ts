@@ -22,7 +22,6 @@ app.prepare().then(() => {
     app.setAssetPrefix(process.env.STATIC_PATH);
     server.use(express.static(path.join(__dirname, "../static")));
     server.use(nextI18NextMiddleware(nextI18next));
-
     if (process.env.PROXY_MODE === "local") {
         // eslint-disable-next-line global-require
         const proxyMiddleware = require("http-proxy-middleware");

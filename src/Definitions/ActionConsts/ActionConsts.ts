@@ -1,6 +1,7 @@
 export const ActionConsts = {
-    Home: {
-        ResetReducer: "Home_ResetReducer",
-        SetReducer: "Home_SetReducer",
+    Api: {
+        request_api: "request_api",
+        receive_api: "receive_api",
+        request_api_fail: "request_api_fail",
     },
 };

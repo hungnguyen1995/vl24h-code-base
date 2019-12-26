@@ -69,7 +69,7 @@ export const Apod = styled.div`
     align-items: center;
 `;
 
-export const ApodButton = styled.div`
+export const ApodButton = styled.button`
     background: #f9da2e;
     border-radius: 5px;
     padding: 5px 10px;

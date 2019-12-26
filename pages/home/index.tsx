@@ -18,21 +18,31 @@ import {
     ApodButton,
 } from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
-import { HomeActions } from "@Actions";
+import { Request } from "@Actions";
+import { Auth } from "@Api";
+// eslint-disable-next-line import/named
 import { Heading, LocaleButton } from "@Components";
 // #endregion Local Imports
 
 // #region Interface Imports
 import { IHomePage, ReduxNextPageContext } from "@Interfaces";
 // #endregion Interface Imports
-
+const ApiKey = "AuthKey";
 const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     t,
     i18n,
 }) => {
-    const home = useSelector((state: IStore) => state.home);
+    const data = useSelector((state: IStore) => state.api);
     const dispatch = useDispatch();
-
+    const getData = React.useCallback(() => {
+        dispatch(
+            Request.Api(
+                Auth.getInfo,
+                ApiKey,
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzczNTM5MjksImV4cCI6MTU3NzM5NzEyOSwidXVpZCI6IlZvbGVqUmVqTm0iLCJpc3MiOiJodHRwOlwvXC9waGFud2ViLmxvY2FsaG9zdFwvIn0.eiSE0slwUN30weB-v-G8a_abcoKorCvTte5vQylwxlM"
+            )
+        );
+    }, [dispatch]);
     const renderLocaleButtons = (activeLanguage: string) =>
         ["en", "es", "tr"].map(lang => (
             <LocaleButton
@@ -49,6 +59,9 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                 <img src="/static/images/pankod-logo.png" alt="Pankod Logo" />
             </Top>
             <Middle>
+                <Apod>
+                    <ApodButton onClick={getData}>Discover Space</ApodButton>
+                </Apod>
                 <MiddleLeft>
                     <MiddleLeftButtons>
                         {renderLocaleButtons(i18n.language)}
@@ -57,25 +70,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                 <MiddleRight>
                     <TopText>{t("common:Hello")}</TopText>
                     <Heading text={t("common:World")} />
-                    <Apod>
-                        <ApodButton
-                            onClick={() => {
-                                dispatch(
-                                    HomeActions.GetApod({
-                                        params: { hd: false },
-                                    })
-                                );
-                            }}
-                        >
-                            Discover Space
-                        </ApodButton>
-                        <img
-                            src={home.image.url}
-                            height="300"
-                            width="150"
-                            alt="Discover Space"
-                        />
-                    </Apod>
+                    <code>{`${JSON.stringify(data)}`}</code>
                 </MiddleRight>
             </Middle>
         </Container>
@@ -83,13 +78,9 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
 };
 
 Home.getInitialProps = async (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ctx: ReduxNextPageContext
 ): Promise<IHomePage.InitialProps> => {
-    await ctx.store.dispatch(
-        HomeActions.GetApod({
-            params: { hd: true },
-        })
-    );
     return { namespacesRequired: ["common"] };
 };
 

@@ -16,6 +16,8 @@
         "baseUrl": ".",
         "paths": {
             "@Actions": ["src/Actions"],
+            "@Api/*": ["src/Api/*"],
+            "@Api": ["src/Api"],
             "@Components/*": ["src/Components/*"],
             "@Components": ["src/Components"],
             "@Definitions/*": ["src/Definitions/*"],
