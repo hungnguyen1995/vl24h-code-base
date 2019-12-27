@@ -11,10 +11,9 @@ const BaseUrl = `${API_URL}`;
 
 export const Http = {
     createHeaders: (tokenAuth: string) => {
-        const headers = {
+        const headers: any = {
             "Content-Type": "application/json",
             Accept: "application/json",
-            Authorization: "",
         };
 
         if (tokenAuth) {
@@ -31,7 +30,7 @@ export const Http = {
         }));
     },
 
-    callApi: async (method: string, endpoint: any, payload: any) => {
+    callApi: async (method: string, endpoint: string, payload: any) => {
         const body = payload;
         let token;
         let user;
@@ -46,9 +45,10 @@ export const Http = {
             token = body?.token ? body.token : "";
             delete body.token;
         }
+        const { createHeaders, processResponse } = Http;
         const optionFetch: any = {
             method,
-            headers: Http.createHeaders(token),
+            headers: createHeaders(token),
         };
 
         if (method === "get") {
@@ -81,8 +81,11 @@ export const Http = {
             optionFetch.body = JSON.stringify(body);
         }
         return fetch(`${BaseUrl}${newEndPoint}`, optionFetch)
-            .then(Http.processResponse)
-            .then(res => ({ ...res.data, statusCode: res.statusCode }))
+            .then(processResponse)
+            .then((res: { data: any; statusCode: number }) => ({
+                ...res.data,
+                statusCode: res.statusCode,
+            }))
             .catch(e => {
                 // eslint-disable-next-line no-console
                 console.warn(e);
@@ -90,7 +93,7 @@ export const Http = {
             });
     },
 
-    apiGet: (endpoint: any, body: any) =>
+    apiGet: (endpoint: string, body: any) =>
         new Promise(resolve =>
             Http.callApi("get", endpoint, body)
                 .then(response => {
@@ -106,7 +109,7 @@ export const Http = {
                 })
         ),
 
-    apiPost: (endpoint: any, body: any) =>
+    apiPost: (endpoint: string, body: any) =>
         new Promise(resolve =>
             Http.callApi("post", endpoint, body)
                 .then(response => {
@@ -122,7 +125,7 @@ export const Http = {
                 })
         ),
 
-    apiPut: (endpoint: any, body: any) =>
+    apiPut: (endpoint: string, body: any) =>
         new Promise(resolve =>
             Http.callApi("put", endpoint, body)
                 .then(response => {
@@ -138,7 +141,7 @@ export const Http = {
                 })
         ),
 
-    apiDelete: (endpoint: any, body: any) =>
+    apiDelete: (endpoint: string, body: any) =>
         new Promise(resolve =>
             Http.callApi("delete", endpoint, body)
                 .then(response => {

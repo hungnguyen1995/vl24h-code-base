@@ -38,7 +38,7 @@ next-boilerplate project provides a lot of features out of the box. Here's an ov
 ##### Document
 * [Front-end with React , Next jS [Tiếng việt]](https://github.com/nguyenvanhoang26041994/dev-experiences/blob/master/front-end/front-end-fast.md)
 * [Tools Build Template CLI next-boilerplate ](https://github.com/pankod/next-boilerplate)
-
+* [TypeScript](https://codetheworld.io/xay-dung-ung-dung-bang-react-su-dung-typescript.html)
 ## License
 
 Licensed SieuViet-DevTeam

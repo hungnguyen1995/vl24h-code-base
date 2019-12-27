@@ -7,6 +7,7 @@ declare namespace IHomePage {
 
     export interface InitialProps {
         namespacesRequired: string[];
+        data?: any;
     }
 }
 

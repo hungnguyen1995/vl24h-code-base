@@ -4,8 +4,10 @@ import { combineReducers } from "redux";
 
 // #region Local Imports
 import { ApiReducer } from "./Api";
+import { UiReducer } from "./Ui";
 // #endregion Local Imports
 
 export default combineReducers({
     api: ApiReducer,
+    ui: UiReducer,
 });

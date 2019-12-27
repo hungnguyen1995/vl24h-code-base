@@ -1,10 +1,7 @@
-// #region Global Imports
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useMemo } from "react";
 import { NextPage } from "next";
-import { useSelector, useDispatch } from "react-redux";
-// #endregion Global Imports
-
-// #region Local Imports
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { bindActionCreators } from "redux";
 import { withTranslation } from "@Server/i18n";
 import {
     Container,
@@ -18,42 +15,60 @@ import {
     ApodButton,
 } from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
-import { Request } from "@Actions";
+import { requestApi, requestApiAsync, putSuccess, putErrors } from "@Actions";
 import { Auth, Fe } from "@Api";
-// eslint-disable-next-line import/named
 import { Heading, LocaleButton } from "@Components";
-// #endregion Local Imports
-
-// #region Interface Imports
+import { KeyConst } from "@Definitions";
 import { IHomePage, ReduxNextPageContext } from "@Interfaces";
-// #endregion Interface Imports
-const ApiKey = "AuthKey";
-const ApiCommon = "ApiCommon";
 
+const token =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzc0MTM4NDAsImV4cCI6MTU3NzQ1NzA0MCwidXVpZCI6IlZvbGVqUmVqTm0iLCJpc3MiOiJodHRwOlwvXC9waGFud2ViLmxvY2FsaG9zdFwvIn0.MtOwkbc6OWOALPqreBYHjbywzjTYxj5hbC9UlwLpxQM";
 const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     t,
     i18n,
 }) => {
-    const res = useSelector((state: IStore) => state.api);
-    const dataUser = res[ApiKey]?.code === 200 ? res[ApiKey].data : {};
-    const dataCommon = res[ApiCommon]?.code === 200 ? res[ApiCommon].data : {};
-    console.log(res, "giá trị: res")
-    console.log(dataUser, dataCommon);
-    // eslint-disable-next-line no-console
     const dispatch = useDispatch();
-    const getData = React.useCallback(() => {
-        dispatch(
-            Request.Api(
-                Auth.getInfo,
-                ApiKey,
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzc0MTM4NDAsImV4cCI6MTU3NzQ1NzA0MCwidXVpZCI6IlZvbGVqUmVqTm0iLCJpc3MiOiJodHRwOlwvXC9waGFud2ViLmxvY2FsaG9zdFwvIn0.MtOwkbc6OWOALPqreBYHjbywzjTYxj5hbC9UlwLpxQM"
-            )
+    const actions = useMemo(
+        () =>
+            bindActionCreators(
+                { requestApi, requestApiAsync, putSuccess, putErrors },
+                dispatch
+            ),
+        [dispatch]
+    );
+    const resAuth = useSelector(
+        (state: IStore) => state.api[KeyConst.HomeAuth],
+        shallowEqual
+    );
+    const resCommon = useSelector(
+        (state: IStore) => state.api[KeyConst.HomeCommon],
+        shallowEqual
+    );
+    // eslint-disable-next-line no-console
+    const dataUser = resAuth?.code === 200 ? resAuth.data : {};
+    // eslint-disable-next-line no-console
+    console.log(dataUser, "giá trị: dataUser");
+    const dataCommon = resCommon?.code === 200 ? resCommon.data : {};
+    const getData = useCallback(() => {
+        actions.requestApi(Auth.getInfo, KeyConst.HomeAuth, token);
+    }, [actions]);
+    const getInit = useCallback(() => {
+        actions.requestApi(Fe.getCommon, KeyConst.HomeCommon, {});
+    }, [actions]);
+    const clickPopup = useCallback(() => {
+        actions.putSuccess("Thành Công");
+    }, [actions]);
+    const clickPopupErors = useCallback(() => {
+        actions.putErrors("Lỗi");
+    }, [actions]);
+    const getAsync = useCallback(() => {
+        actions.requestApiAsync(
+            [Fe.getCommon, Auth.getInfo],
+            [KeyConst.HomeCommon, KeyConst.HomeAuth],
+            KeyConst.HomeInitAsync,
+            [{ token }, {}]
         );
-    }, [dispatch]);
-
-    const getInit = React.useCallback(() => {
-        dispatch(Request.Api(Fe.getCommon, ApiCommon, {}));
-    }, [dispatch]);
+    }, [actions]);
 
     useEffect(() => {
         getInit();
@@ -76,7 +91,14 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
             </Top>
             <Middle>
                 <Apod>
-                    <ApodButton onClick={getData}>Lấy Info User</ApodButton>
+                    <ApodButton onClick={getData}>Api Single</ApodButton>
+                    <ApodButton onClick={getAsync}>
+                        Api Multi Promise All
+                    </ApodButton>
+                    <ApodButton onClick={clickPopup}>clickPopup</ApodButton>
+                    <ApodButton onClick={clickPopupErors}>
+                        clickPopupErors
+                    </ApodButton>
                 </Apod>
                 <MiddleLeft>
                     <MiddleLeftButtons>
@@ -88,9 +110,12 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     <Heading text={t("common:World")} />
                 </MiddleRight>
             </Middle>
+            <h2>DataUser</h2>
+            <br />
             <code>{`${JSON.stringify(dataUser)}`}</code>
             <br />
             <br />
+            <h2>dataCommon</h2>
             <br />
             <br />
             <code>{`${JSON.stringify(dataCommon)}`}</code>
@@ -103,16 +128,13 @@ Home.getInitialProps = async (
     ctx: ReduxNextPageContext
 ): Promise<IHomePage.InitialProps> => {
     await ctx.store.dispatch(
-        Request.Api(
-            Auth.getInfo,
-            ApiKey,
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzczNTM5MjksImV4cCI6MTU3NzM5NzEyOSwidXVpZCI6IlZvbGVqUmVqTm0iLCJpc3MiOiJodHRwOlwvXC9waGFud2ViLmxvY2FsaG9zdFwvIn0.eiSE0slwUN30weB-v-G8a_abcoKorCvTte5vQylwxlM"
-        )
+        requestApi(Auth.getInfo, KeyConst.HomeAuth, token)
     );
-    const res = ctx.store.getState().api[ApiKey];
+    const res = ctx.store.getState().api[KeyConst.HomeAuth];
+    // result Data On server
     const data = res?.code === 200 ? res.data : {};
-    console.log(data, "giá trị: data");
-    return { namespacesRequired: ["common"] };
+    // eslint-disable-next-line no-console
+    return { namespacesRequired: ["common"], data };
 };
 
 const Extended = withTranslation("common")(Home);

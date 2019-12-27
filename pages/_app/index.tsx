@@ -11,7 +11,7 @@ import { theme } from "@Definitions/Styled";
 import { appWithTranslation } from "@Server/i18n";
 import { AppWithStore } from "@Interfaces";
 import { makeStore } from "@Redux";
-
+import { Toasty } from "@Components";
 import "@Static/css/reset.scss";
 // #endregion Local Imports
 
@@ -33,6 +33,7 @@ class WebApp extends App<AppWithStore> {
         return (
             <Provider store={store}>
                 <ThemeProvider theme={theme}>
+                    <Toasty />
                     <Component {...pageProps} />
                 </ThemeProvider>
             </Provider>
