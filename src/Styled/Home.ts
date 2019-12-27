@@ -10,6 +10,7 @@ export const Container = styled.div`
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
+    width: 100%;
 `;
 
 export const Top = styled.div`
@@ -59,6 +60,7 @@ export const MiddleRight = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1 1 100%;
+    width: 100%;
 `;
 
 export const Apod = styled.div`

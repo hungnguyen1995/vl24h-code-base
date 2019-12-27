@@ -28,6 +28,5 @@ export const Request = {
                 args,
             });
         }
-        console.log(payload, "giá trị: 333");
     },
 };

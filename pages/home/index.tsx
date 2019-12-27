@@ -1,5 +1,5 @@
 // #region Global Imports
-import * as React from "react";
+import React, { useEffect } from "react";
 import { NextPage } from "next";
 import { useSelector, useDispatch } from "react-redux";
 // #endregion Global Imports
@@ -19,7 +19,7 @@ import {
 } from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
 import { Request } from "@Actions";
-import { Auth } from "@Api";
+import { Auth, Fe } from "@Api";
 // eslint-disable-next-line import/named
 import { Heading, LocaleButton } from "@Components";
 // #endregion Local Imports
@@ -28,23 +28,39 @@ import { Heading, LocaleButton } from "@Components";
 import { IHomePage, ReduxNextPageContext } from "@Interfaces";
 // #endregion Interface Imports
 const ApiKey = "AuthKey";
+const ApiCommon = "ApiCommon";
+
 const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     t,
     i18n,
 }) => {
-    const data = useSelector((state: IStore) => state.api);
+    const res = useSelector((state: IStore) => state.api);
+    const dataUser = res[ApiKey]?.code === 200 ? res[ApiKey].data : {};
+    const dataCommon = res[ApiCommon]?.code === 200 ? res[ApiCommon].data : {};
+    console.log(res, "giá trị: res")
+    console.log(dataUser, dataCommon);
+    // eslint-disable-next-line no-console
     const dispatch = useDispatch();
     const getData = React.useCallback(() => {
         dispatch(
             Request.Api(
                 Auth.getInfo,
                 ApiKey,
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzczNTM5MjksImV4cCI6MTU3NzM5NzEyOSwidXVpZCI6IlZvbGVqUmVqTm0iLCJpc3MiOiJodHRwOlwvXC9waGFud2ViLmxvY2FsaG9zdFwvIn0.eiSE0slwUN30weB-v-G8a_abcoKorCvTte5vQylwxlM"
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzc0MTM4NDAsImV4cCI6MTU3NzQ1NzA0MCwidXVpZCI6IlZvbGVqUmVqTm0iLCJpc3MiOiJodHRwOlwvXC9waGFud2ViLmxvY2FsaG9zdFwvIn0.MtOwkbc6OWOALPqreBYHjbywzjTYxj5hbC9UlwLpxQM"
             )
         );
     }, [dispatch]);
+
+    const getInit = React.useCallback(() => {
+        dispatch(Request.Api(Fe.getCommon, ApiCommon, {}));
+    }, [dispatch]);
+
+    useEffect(() => {
+        getInit();
+    }, [getInit]);
+
     const renderLocaleButtons = (activeLanguage: string) =>
-        ["en", "es", "tr"].map(lang => (
+        ["vi", "es", "tr"].map(lang => (
             <LocaleButton
                 key={lang}
                 lang={lang}
@@ -60,7 +76,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
             </Top>
             <Middle>
                 <Apod>
-                    <ApodButton onClick={getData}>Discover Space</ApodButton>
+                    <ApodButton onClick={getData}>Lấy Info User</ApodButton>
                 </Apod>
                 <MiddleLeft>
                     <MiddleLeftButtons>
@@ -70,9 +86,14 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                 <MiddleRight>
                     <TopText>{t("common:Hello")}</TopText>
                     <Heading text={t("common:World")} />
-                    <code>{`${JSON.stringify(data)}`}</code>
                 </MiddleRight>
             </Middle>
+            <code>{`${JSON.stringify(dataUser)}`}</code>
+            <br />
+            <br />
+            <br />
+            <br />
+            <code>{`${JSON.stringify(dataCommon)}`}</code>
         </Container>
     );
 };
@@ -81,6 +102,16 @@ Home.getInitialProps = async (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ctx: ReduxNextPageContext
 ): Promise<IHomePage.InitialProps> => {
+    await ctx.store.dispatch(
+        Request.Api(
+            Auth.getInfo,
+            ApiKey,
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzczNTM5MjksImV4cCI6MTU3NzM5NzEyOSwidXVpZCI6IlZvbGVqUmVqTm0iLCJpc3MiOiJodHRwOlwvXC9waGFud2ViLmxvY2FsaG9zdFwvIn0.eiSE0slwUN30weB-v-G8a_abcoKorCvTte5vQylwxlM"
+        )
+    );
+    const res = ctx.store.getState().api[ApiKey];
+    const data = res?.code === 200 ? res.data : {};
+    console.log(data, "giá trị: data");
     return { namespacesRequired: ["common"] };
 };
 

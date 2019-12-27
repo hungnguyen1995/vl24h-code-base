@@ -25,7 +25,6 @@ export const Http = {
     processResponse: (response: any) => {
         const statusCode = response.status;
         const data = response.json();
-        console.log(data, "giá trị: data");
         return Promise.all([statusCode, data]).then(res => ({
             statusCode: res[0],
             data: res[1],
@@ -81,8 +80,6 @@ export const Http = {
         } else {
             optionFetch.body = JSON.stringify(body);
         }
-        console.log(optionFetch, "giá trị: optionFetch");
-        console.log(`${BaseUrl}${newEndPoint}`, "giá trị: `${BaseUrl}${newEndPoint}`")
         return fetch(`${BaseUrl}${newEndPoint}`, optionFetch)
             .then(Http.processResponse)
             .then(res => ({ ...res.data, statusCode: res.statusCode }))
