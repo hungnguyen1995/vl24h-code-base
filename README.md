@@ -1,5 +1,14 @@
 # CodeBase Frontend SieuViet
 
+### Install [Yarn or Npm]
+    ~ $ yarn install
+##### Run dev 
+    ~ $ yarn start:dev 
+##### Run Production
+       ~ $ yarn build
+       ~ $ yarn start 
+    
+
 Script in package.json:
 
     "start:dev": "nodemon", // Run dev
