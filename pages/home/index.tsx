@@ -1,5 +1,6 @@
-import React, { useEffect, useCallback, useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { NextPage } from "next";
+import NextHead from "next/head";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withTranslation } from "@Server/i18n";
@@ -15,7 +16,13 @@ import {
     ApodButton,
 } from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
-import { requestApi, requestApiAsync, putSuccess, putErrors } from "@Actions";
+import {
+    requestApi,
+    requestApiAsync,
+    requestResetApi,
+    putSuccess,
+    putErrors,
+} from "@Actions";
 import { Auth, Fe } from "@Api";
 import { Heading, LocaleButton } from "@Components";
 import { KeyConst } from "@Definitions";
@@ -31,7 +38,13 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     const actions = useMemo(
         () =>
             bindActionCreators(
-                { requestApi, requestApiAsync, putSuccess, putErrors },
+                {
+                    requestApi,
+                    requestApiAsync,
+                    putSuccess,
+                    putErrors,
+                    requestResetApi,
+                },
                 dispatch
             ),
         [dispatch]
@@ -49,7 +62,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     // eslint-disable-next-line no-console
     console.log(dataUser, "giá trị: dataUser");
     const dataCommon = resCommon?.code === 200 ? resCommon.data : {};
-    const getData = useCallback(() => {
+    const getInfo = useCallback(() => {
         actions.requestApi(Auth.getInfo, KeyConst.HomeAuth, token);
     }, [actions]);
     const getInit = useCallback(() => {
@@ -69,10 +82,9 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
             [{ token }, {}]
         );
     }, [actions]);
-
-    useEffect(() => {
-        getInit();
-    }, [getInit]);
+    const resetApi = useCallback(() => {
+        actions.requestResetApi();
+    }, [actions]);
 
     const renderLocaleButtons = (activeLanguage: string) =>
         ["vi", "es", "tr"].map(lang => (
@@ -86,19 +98,22 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
 
     return (
         <Container>
+            <NextHead>
+                <title>Home | CodeBase</title>
+            </NextHead>
             <Top>
                 <img src="/static/images/pankod-logo.png" alt="Pankod Logo" />
             </Top>
             <Middle>
                 <Apod>
-                    <ApodButton onClick={getData}>Api Single</ApodButton>
+                    <ApodButton onClick={getInit}>Api Single Init</ApodButton>
+                    <ApodButton onClick={getInfo}>
+                        Api Single getInfo
+                    </ApodButton>
                     <ApodButton onClick={getAsync}>
                         Api Multi Promise All
                     </ApodButton>
-                    <ApodButton onClick={clickPopup}>clickPopup</ApodButton>
-                    <ApodButton onClick={clickPopupErors}>
-                        clickPopupErors
-                    </ApodButton>
+                    <ApodButton onClick={resetApi}>Reset API</ApodButton>
                 </Apod>
                 <MiddleLeft>
                     <MiddleLeftButtons>
@@ -127,14 +142,12 @@ Home.getInitialProps = async (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ctx: ReduxNextPageContext
 ): Promise<IHomePage.InitialProps> => {
-    await ctx.store.dispatch(
-        requestApi(Auth.getInfo, KeyConst.HomeAuth, token)
-    );
-    const res = ctx.store.getState().api[KeyConst.HomeAuth];
-    // result Data On server
-    const data = res?.code === 200 ? res.data : {};
-    // eslint-disable-next-line no-console
-    return { namespacesRequired: ["common"], data };
+    // await ctx.store.dispatch(
+    //     requestApi(Auth.getInfo, KeyConst.HomeAuth, token)
+    // );
+    // const res = ctx.store.getState().api[KeyConst.HomeAuth];
+    // const data = res?.code === 200 ? res.data : {};
+    return { namespacesRequired: ["common"], data: {} };
 };
 
 const Extended = withTranslation("common")(Home);

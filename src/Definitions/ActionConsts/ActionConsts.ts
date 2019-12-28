@@ -3,6 +3,7 @@ export const ActionConsts = {
         receive_api: "receive_api",
         receive_api_async: "receive_api_async",
         receive_api_fail: "receive_api_fail",
+        receive_api_reset: "receive_api_reset",
     },
     Ui: {
         put_toast_success: "put_toast_success",

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { toast, ToastContainer, Zoom } from "react-toastify";
+import { toast, ToastContainer, Flip } from "react-toastify";
 import { useSelector, shallowEqual } from "react-redux";
 import { IStore, IToasty } from "@Redux/IStore";
 
@@ -13,12 +13,12 @@ const Toasty: React.FunctionComponent = (): JSX.Element => {
         if (toasty.uuid) {
             if (toasty.success === 1) {
                 toast.info(`✔️  ${JSON.stringify(toasty.msg)}`, {
-                    transition: Zoom,
+                    transition: Flip,
                     autoClose: 3000,
                 });
             } else {
                 toast.error(`❗️ ${toasty.msg}`, {
-                    transition: Zoom,
+                    transition: Flip,
                     autoClose: 3000,
                 });
             }

@@ -45,7 +45,7 @@ export const requestApiAsync = (
     name: string,
     args: any[]
 ) => async (dispatch: Dispatch) => {
-    try{
+    try {
         const promises = fns.map(async (fn, value) => {
             try {
                 return await fn(args[value]);
@@ -54,12 +54,11 @@ export const requestApiAsync = (
             }
         });
         const response = await Promise.all(promises);
-        console.log(response, "giá trị: response")
         const payload = names.reduce((obj, key, index) => {
             if (response[index].code !== 200) {
                 dispatch(
                     putErrors(
-                        `Lỗi : ${key}-${response[index].msg} - code: ${response[index].code}`
+                        `Lỗi - ${response[index].code} - ${key}-${response[index].msg} `
                     )
                 );
             }
@@ -74,4 +73,10 @@ export const requestApiAsync = (
     } catch (e) {
         dispatch(putErrors(e));
     }
+};
+
+export const requestResetApi = () => {
+    return {
+        type: ActionConsts.Api.receive_api_reset,
+    };
 };
