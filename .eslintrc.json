@@ -11,7 +11,8 @@
         "react/jsx-indent-props": [2, 4],
         "import/prefer-default-export": "off",
         "import/no-cycle": "off",
-        "no-multi-assign": "off"
+        "no-multi-assign": "off",
+        "react/no-danger": [2,4]
     },
     "settings": {
         "import/parsers": {

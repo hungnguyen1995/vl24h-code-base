@@ -97,7 +97,7 @@ class WebAppDocument extends Document {
     private static renderIconTags() {
         return (
             <>
-                <link rel="shortcut icon" href={`/images/favicon.png`} />
+                <link rel="shortcut icon" href="/static/images/favicon.png" />
                 {/* Main Link Tags */}
                 <link
                     rel="icon"
