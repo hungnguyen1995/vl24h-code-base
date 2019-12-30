@@ -1,21 +1,18 @@
-// #region Global Imports
 import * as React from "react";
 import App, { AppInitialProps, AppContext } from "next/app";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import withRedux from "next-redux-wrapper";
-// #endregion Global Imports
-
-// #region Local Imports
 import { theme } from "@Definitions/Styled";
 import { appWithTranslation } from "@Server/i18n";
 import { AppWithStore } from "@Interfaces";
 import { makeStore } from "@Redux";
-import { Toasty } from "@Components";
+import { Toasty, MainLayout } from "@Components";
+
 import "@Static/css/reset.scss";
 // #endregion Local Imports
 
-class WebApp extends App<AppWithStore> {
+class WebApp extends App<any, AppWithStore> {
     static async getInitialProps({
         Component,
         ctx,
@@ -29,12 +26,17 @@ class WebApp extends App<AppWithStore> {
 
     render() {
         const { Component, pageProps, store } = this.props;
-
+        const getLayout =
+            Component.getLayout ||
+            ((page: any) => <MainLayout>{page}</MainLayout>);
+        const ComponentLayout = () => {
+            return getLayout(<Component {...pageProps} />);
+        };
         return (
             <Provider store={store}>
                 <ThemeProvider theme={theme}>
                     <Toasty />
-                    <Component {...pageProps} />
+                    <ComponentLayout />
                 </ThemeProvider>
             </Provider>
         );

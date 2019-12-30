@@ -1,6 +1,4 @@
 import React, { useCallback, useMemo } from "react";
-import { NextPage } from "next";
-import NextHead from "next/head";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withTranslation } from "@Server/i18n";
@@ -24,16 +22,14 @@ import {
     putErrors,
 } from "@Actions";
 import { Auth, Fe } from "@Api";
-import { Heading, LocaleButton } from "@Components";
+import { Heading, LocaleButton, withLayout } from "@Components";
 import { KeyConst } from "@Definitions";
-import { IHomePage, ReduxNextPageContext } from "@Interfaces";
+import { ReduxNextPageContext } from "@Interfaces";
 
 const token =
     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Nzc0MTM4NDAsImV4cCI6MTU3NzQ1NzA0MCwidXVpZCI6IlZvbGVqUmVqTm0iLCJpc3MiOiJodHRwOlwvXC9waGFud2ViLmxvY2FsaG9zdFwvIn0.MtOwkbc6OWOALPqreBYHjbywzjTYxj5hbC9UlwLpxQM";
-const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
-    t,
-    i18n,
-}) => {
+
+const Home: any = ({ t, i18n }) => {
     const dispatch = useDispatch();
     const actions = useMemo(
         () =>
@@ -98,9 +94,6 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
 
     return (
         <Container>
-            <NextHead>
-                <title>Home | CodeBase</title>
-            </NextHead>
             <Top>
                 <img src="/static/images/pankod-logo.png" alt="Pankod Logo" />
             </Top>
@@ -138,18 +131,11 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     );
 };
 
-Home.getInitialProps = async (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    ctx: ReduxNextPageContext
-): Promise<IHomePage.InitialProps> => {
-    // await ctx.store.dispatch(
-    //     requestApi(Auth.getInfo, KeyConst.HomeAuth, token)
-    // );
-    // const res = ctx.store.getState().api[KeyConst.HomeAuth];
-    // const data = res?.code === 200 ? res.data : {};
+Home.getInitialProps = async (ctx: ReduxNextPageContext): Promise<any> => {
     return { namespacesRequired: ["common"], data: {} };
 };
 
+Home.getLayout = withLayout;
 const Extended = withTranslation("common")(Home);
 
 export default Extended;
