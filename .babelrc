@@ -11,6 +11,7 @@
                     "@Components": "./src/Components",
                     "@Definitions": "./src/Definitions",
                     "@Interfaces": "./src/Interfaces",
+                    "@Helper": "./src/Helper",
                     "@Pages": "./pages",
                     "@Reducers": "./src/Redux/Reducers",
                     "@Redux": "./src/Redux",

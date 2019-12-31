@@ -17,8 +17,10 @@
         "baseUrl": ".",
         "paths": {
             "@Actions": ["src/Actions"],
-            "@Api/*": ["src/Api/*"],
             "@Api": ["src/Api"],
+            "@Api/*": ["src/Api/*"],
+            "@Helper": ["src/Helper"],
+            "@Helper/*": ["src/Helper/*"],
             "@Components/*": ["src/Components/*"],
             "@Components": ["src/Components"],
             "@Definitions/*": ["src/Definitions/*"],
@@ -34,8 +36,7 @@
             "@Services": ["src/Services"],
             "@Services/*": ["src/Services/*"],
             "@Static/*": ["static/*"],
-            "@Styled/*": ["src/Styled/*"],
-            "@Test/*": ["test/*"]
+            "@Styled/*": ["src/Styled/*"]
         }
     },
     "exclude": [

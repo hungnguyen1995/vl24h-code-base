@@ -56,7 +56,12 @@ const AccountSettingsBilling = () => (
 );
 
 AccountSettingsBilling.getInitialProps = async (ctx: ReduxNextPageContext): Promise<any> => {
-    return { namespacesRequired: ["common"], data: {} };
+    const meta = {
+        title: "Trang Chủ",
+        description: "Trang chủ",
+        background: "#00999f",
+    };
+    return { namespacesRequired: ["common"], data: {}, meta };
 };
 AccountSettingsBilling.getLayout = withAccountLayout;
 

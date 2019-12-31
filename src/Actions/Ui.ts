@@ -24,3 +24,15 @@ export const putErrors = (msg: string) => {
         },
     };
 };
+
+export const showModal = payload => ({
+    type: ActionConsts.Ui.show_modal,
+    status: true,
+    title: payload.title,
+    Component: payload.Component,
+    childProps: payload.childProps,
+});
+
+export const hideModal = () => ({
+    type: ActionConsts.Ui.hide_modal,
+});

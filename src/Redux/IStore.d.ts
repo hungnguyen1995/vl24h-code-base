@@ -10,6 +10,14 @@ export interface IToasty {
 export interface IUI {
     toast?: IToasty;
     loading?: any;
+    modal?: IModal;
+}
+
+export interface IModal {
+    status?: boolean;
+    title?: string;
+    Component?: any;
+    childProps?: any;
 }
 
 export interface IStore {

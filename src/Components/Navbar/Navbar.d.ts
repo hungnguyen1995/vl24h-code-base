@@ -1,5 +1,7 @@
 declare namespace INavbar {
-    export interface IProps {}
+    export interface IProps {
+        metaTag?: any;
+    }
 }
 
 export { INavbar };

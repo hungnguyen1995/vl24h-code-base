@@ -44,7 +44,12 @@ const AccountSettingsProfile = () => (
 );
 
 AccountSettingsProfile.getInitialProps = async (ctx: ReduxNextPageContext): Promise<any> => {
-    return { namespacesRequired: ["common"], data: {} };
+    const meta = {
+        title: "Trang Chủ",
+        description: "Trang chủ",
+        background: "#0b9d54",
+    };
+    return { namespacesRequired: ["common"], data: {}, meta };
 };
 AccountSettingsProfile.getLayout = withAccountLayout;
 

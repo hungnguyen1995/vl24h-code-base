@@ -9,11 +9,37 @@ const INITIAL_STATE: IUI = {
         success: 1,
         uuid: "",
     },
+    modal: {
+        status: false,
+        title: "",
+        Component: null,
+        childProps: null,
+    },
     loading: false,
 };
 
 export const UiReducer = (state = INITIAL_STATE, action: any) => {
     switch (action.type) {
+        case ActionConsts.Ui.show_modal:
+            return {
+                ...state,
+                modal: {
+                    status: true,
+                    title: action.title,
+                    Component: action.Component,
+                    childProps: action.childProps,
+                },
+            };
+        case ActionConsts.Ui.hide_modal:
+            return {
+                ...state,
+                modal: {
+                    status: false,
+                    title: "",
+                    Component: null,
+                    childProps: null,
+                },
+            };
         case ActionConsts.Ui.put_toast_errors:
         case ActionConsts.Ui.put_toast_success:
             return {

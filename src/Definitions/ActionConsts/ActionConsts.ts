@@ -8,5 +8,7 @@ export const ActionConsts = {
     Ui: {
         put_toast_success: "put_toast_success",
         put_toast_errors: "put_toast_errors",
+        show_modal: "show_modal",
+        hide_modal: "hide_modal",
     },
 };

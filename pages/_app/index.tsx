@@ -8,7 +8,7 @@ import { appWithTranslation } from "@Server/i18n";
 import { AppWithStore } from "@Interfaces";
 import { makeStore } from "@Redux";
 import { Toasty, MainLayout } from "@Components";
-
+import { Modal } from "@Components";
 import "@Static/css/reset.scss";
 // #endregion Local Imports
 
@@ -24,19 +24,21 @@ class WebApp extends App<any, AppWithStore> {
         return { pageProps };
     }
 
+    private static GetLayout(Component, pageProps) {
+        const getLayout =
+            Component.getLayout || (page => <MainLayout>{page}</MainLayout>);
+        return getLayout(<Component {...pageProps} />);
+    }
+
     render() {
         const { Component, pageProps, store } = this.props;
-        const getLayout =
-            Component.getLayout ||
-            ((page: any) => <MainLayout>{page}</MainLayout>);
-        const ComponentLayout = () => {
-            return getLayout(<Component {...pageProps} />);
-        };
+
         return (
             <Provider store={store}>
                 <ThemeProvider theme={theme}>
                     <Toasty />
-                    <ComponentLayout />
+                    <Modal />
+                    {WebApp.GetLayout(Component, pageProps)}
                 </ThemeProvider>
             </Provider>
         );
