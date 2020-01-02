@@ -56,5 +56,4 @@ Script in package.json:
 * Site map 
 * PWA Service Worker cache img + html + js (done)
 
-
 Licensed SieuViet-DevTeam
