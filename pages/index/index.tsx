@@ -4,7 +4,7 @@ import { ReduxNextPageContext } from "@Interfaces";
 import { withLayout } from "@Components/Hocs";
 import { useDispatch } from "react-redux";
 import { showModal } from "@Actions";
-import { TestForm, Button } from "@Components";
+import { TestForm, TestButton } from "@Components";
 
 const Index = () => {
     const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const Index = () => {
                 </button>
             </div>
             <div className="mt-12 text-center">
-                <Button />
+                <TestButton />
             </div>
         </div>
     );

@@ -98,77 +98,22 @@ class WebAppDocument extends Document {
         return (
             <>
                 <link rel="shortcut icon" href="/static/images/favicon.png" />
-                {/* Main Link Tags */}
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="16x16"
-                    href={`${fullAssetPath}/icons/icon_16x16.png`}
-                />
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="32x32"
-                    href={`${fullAssetPath}/icons/icon_32x32.png`}
-                />
-
                 {/* iOS */}
                 <link
                     rel="apple-touch-icon"
                     href={`${fullAssetPath}/icons/icon_180x180.png`}
                 />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="76x76"
-                    href={`${fullAssetPath}/icons/icon_76x76.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="120x120"
-                    href={`${fullAssetPath}/icons/icon_120x120.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="152x152"
-                    href={`${fullAssetPath}/icons/icon_152x152.png`}
-                />
-
                 {/* Startup Image */}
                 <link
                     rel="apple-touch-startup-image"
                     sizes="1024x1024"
                     href={`${fullAssetPath}/icons/icon_1024x1024.png`}
                 />
-
-                {/* Pinned Tab */}
-                <link
-                    rel="mask-icon"
-                    href={`${fullAssetPath}/icons/safari-pinned-tab.svg`}
-                    color="5bbad5"
-                />
-
                 {/* Android */}
                 <link
                     rel="icon"
                     sizes="192x192"
                     href={`${fullAssetPath}/icons/icon_192x192.png`}
-                />
-                <link
-                    rel="icon"
-                    sizes="194x194"
-                    href={`${fullAssetPath}/icons/icon_194x194.png`}
-                />
-
-                {/* UC Browser */}
-                <link
-                    rel="apple-touch-icon-precomposed"
-                    sizes="57x57"
-                    href={`${fullAssetPath}/icons/icon_57x57.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="72x72"
-                    href={`${fullAssetPath}/icons/icon_72x72.png`}
                 />
             </>
         );

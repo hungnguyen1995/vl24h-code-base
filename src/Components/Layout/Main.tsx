@@ -1,5 +1,4 @@
 import * as React from "react";
-import Link from "next/link";
 import NextHead from "next/head";
 import { Navbar } from "@Components";
 
@@ -10,7 +9,7 @@ const MainLayout: React.FunctionComponent<LayoutProps> = ({ children }) => {
     const {
         props: { meta },
     } = children;
-    const metaTag = meta || children.props.children.props.meta;
+    const metaTag = meta || children?.props?.children?.props?.meta;
     return (
         <div className="bg-white antialiased">
             <NextHead>
