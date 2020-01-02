@@ -40,13 +40,11 @@ Script in package.json:
 * **PWA + Service Worker** - Chạy trên Thiết Bị Di Động , Chạy Khi Offline cache... 
 
 <br/>
-<div>
- <img width="600" src="./boilerplate-cli.gif" >
-</div>
 
     ~ $ npm run cli
 
 ##### Document
+* [Next Js ** https://nextjs.org/ ](https://nextjs.org/)
 * [Front-end with React , Next jS [Tiếng việt]](https://github.com/nguyenvanhoang26041994/dev-experiences/blob/master/front-end/front-end-fast.md)
 * [Tools Build Template CLI next-boilerplate ](https://github.com/pankod/next-boilerplate)
 * [TypeScript](https://codetheworld.io/xay-dung-ung-dung-bang-react-su-dung-typescript.html)
@@ -55,7 +53,6 @@ Script in package.json:
 
 ####Todo
 * LURL cache HTML on Server Node
-* PWA Service Worker cache img + html + js
-*   
-
+* Site map 
+* PWA Service Worker cache img + html + js (done)
 Licensed SieuViet-DevTeam

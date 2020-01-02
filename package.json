@@ -10,8 +10,7 @@
     "lint": "eslint {src,pages,server}/**/* --ext .tsx,.ts",
     "pretty": "prettier --write --config .prettierrc.js {src,pages,server}/**/*.{ts,tsx}",
     "format": "npm run lint -- --fix",
-    "analyze": "cross-env BUNDLE_ANALYZE=both npm run build",
-    "cli": "pankod-cli add"
+    "analyze": "cross-env BUNDLE_ANALYZE=both npm run build"
   },
   "dependencies": {
     "@material-ui/core": "^4.8.2",
@@ -53,7 +52,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
-    "@pankod/pankod-cli": "^1.0.0",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^4.17.1",
     "@types/next-redux-wrapper": "^2.0.2",
@@ -85,9 +83,6 @@
     "ts-node": "^8.4.1",
     "typescript": "^3.6.3",
     "webpack-pwa-manifest": "^4.1.1"
-  },
-  "pankod": {
-    "projectType": "nextjs2"
   },
   "license": "ISC"
 }
