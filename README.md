@@ -48,12 +48,34 @@ Script in package.json:
 * [Front-end with React , Next jS [Tiếng việt]](https://github.com/nguyenvanhoang26041994/dev-experiences/blob/master/front-end/front-end-fast.md)
 * [Tools Build Template CLI next-boilerplate ](https://github.com/pankod/next-boilerplate)
 * [TypeScript](https://codetheworld.io/xay-dung-ung-dung-bang-react-su-dung-typescript.html)
-## License
-
 
 ####Todo
 * LURL cache HTML on Server Node
 * Site map 
 * PWA Service Worker cache img + html + js (done)
 
-Licensed SieuViet-DevTeam
+
+####Resolution order Next js
+   On the server:
+  * 1. app.getInitialProps
+  * 2. page.getInitialProps
+  * 3. document.getInitialProps
+  * 4. app.render
+  * 5. page.render
+  * 6. document.render
+  *
+  * On the server with error:
+  * 1. document.getInitialProps
+  * 2. app.render
+  * 3. page.render
+  * 4. document.render
+  *
+  * On the client
+  * 1. app.getInitialProps
+  * 2. page.getInitialProps
+  * 3. app.render
+  * 4. page.render
+
+## License
+
+Licensed SieuViet@DevTeam
