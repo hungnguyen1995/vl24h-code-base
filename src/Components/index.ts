@@ -5,5 +5,5 @@ export { Footer } from "@Components/Footer";
 export { Heading } from "@Components/Heading";
 export { Toasty } from "@Components/Toasty";
 export { Modal } from "@Components/Modal";
-export { LocaleButton } from "@Components/LocaleButton";
 export { TestForm } from "@Components/Basic";
+export { Button } from "@Components/Basic";

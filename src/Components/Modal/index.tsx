@@ -25,7 +25,7 @@ const Modal: React.FunctionComponent = () => {
             right: "unset",
             bottom: "unset",
         },
-    }
+    };
 
     return (
         <ReactModal

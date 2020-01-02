@@ -2,6 +2,8 @@
 
 ### Install [Yarn or Npm]
     ~ $ yarn install
+    
+    ## Replace - env.example -> .env
 ##### Run dev 
     ~ $ yarn start:dev 
 ##### Run Production

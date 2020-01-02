@@ -4,11 +4,10 @@ import { ReduxNextPageContext } from "@Interfaces";
 import { withLayout } from "@Components/Hocs";
 import { useDispatch } from "react-redux";
 import { showModal } from "@Actions";
-import { TestForm } from "@Components";
+import { TestForm, Button } from "@Components";
 
 const Index = () => {
     const dispatch = useDispatch();
-
     const openModal = () => {
         dispatch(showModal({ title: "123", Component: TestForm }));
     };
@@ -38,6 +37,9 @@ const Index = () => {
                 >
                     Modal
                 </button>
+            </div>
+            <div className="mt-12 text-center">
+                <Button />
             </div>
         </div>
     );
