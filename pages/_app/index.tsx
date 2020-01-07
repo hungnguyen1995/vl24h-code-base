@@ -7,8 +7,7 @@ import { theme } from "@Definitions/Styled";
 import { appWithTranslation } from "@Server/i18n";
 import { AppWithStore } from "@Interfaces";
 import { makeStore } from "@Redux";
-import { Toasty, MainLayout } from "@Components";
-import { Modal } from "@Components";
+import { Toasty, MainLayout, Modal } from "@Components";
 import "@Static/css/reset.scss";
 // #endregion Local Imports
 
