@@ -6,7 +6,9 @@ const routes = (module.exports = nextRoutes());
 
 routes.add("home", "home");
 routes.add("index", "/");
-routes.add("/profile", "/profile");
-routes.add("/profile/billing", "/profile/billing");
+routes.add("profile", "/profile");
+routes.add("profile/billing", "/profile/billing");
+routes.add("form", "/form");
+routes.add("form/billing", "/form/billing");
 
 export default routes;

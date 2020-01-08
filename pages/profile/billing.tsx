@@ -3,63 +3,128 @@ import { withAccountLayout } from "@Components";
 import { ReduxNextPageContext } from "@Interfaces/Pages/App";
 
 const AccountSettingsBilling = () => (
-    <div>
-        <div className="pt-6 pb-8 sm:pt-8">
-            <p className="text-sm text-gray-700">
-                Set your billing information.
-            </p>
-            <div className="mt-6">
-                <div className="max-w-4xl mx-auto">
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label className="block">
-                        <span className="block font-medium text-sm text-gray-900 leading-tight">
-                            Credit card number
-                        </span>
-                        <div className="mt-2">
-                            <input
-                                type="email"
-                                className="block w-full border border-gray-300 rounded-lg bg-gray-100 px-3 py-2 leading-tight focus:outline-none focus:border-gray-600 focus:bg-white"
-                                placeholder="4242 4242 4242 4242"
-                            />
-                        </div>
-                    </label>
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label className="block mt-5">
-                        <span className="block font-medium text-sm text-gray-900 leading-tight">
-                            Billing address
-                        </span>
-                        <div className="mt-2">
-                            <input
-                                className="block w-full border border-gray-300 rounded-lg bg-gray-100 px-3 py-2 leading-tight focus:outline-none focus:border-gray-600 focus:bg-white"
-                                placeholder="555 Party Drive"
-                            />
-                        </div>
-                    </label>
-                </div>
+    <form className="w-full max-w-lg">
+        <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="grid-first-name"
+                >
+                    <input
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name"
+                        type="text"
+                        placeholder="Jane"
+                    />
+                    First Name
+                </label>
+                <p className="text-red-500 text-xs italic">
+                    Please fill out this field.
+                </p>
+            </div>
+            <div className="w-full md:w-1/2 px-3">
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="grid-last-name"
+                >
+                    <input
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-last-name"
+                        type="text"
+                        placeholder="Doe"
+                    />
+                    Last Name
+                </label>
             </div>
         </div>
-        <div className="border-t-2 border-gray-200 px-0 py-5 flex justify-end">
-            <button
-                type="button"
-                className="px-4 py-3 leading-none font-semibold rounded-lg bg-gray-300 text-gray-900 hover:bg-gray-400 focus:outline-none focus:bg-gray-400"
-            >
-                Cancel
-            </button>
-            <button
-                type="button"
-                className="ml-4 px-6 py-3 leading-none font-semibold rounded-lg bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:bg-gray-900"
-            >
-                Save
-            </button>
+        <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+                <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                >
+                    <input
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-password"
+                        type="password"
+                        placeholder="******************"
+                    />
+                    Password
+                </label>
+
+                <p className="text-gray-600 text-xs italic">
+                    Make it as long and as crazy as you like
+                </p>
+            </div>
         </div>
-    </div>
+        <div className="flex flex-wrap -mx-3 mb-2">
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="grid-city"
+                >
+                    <input
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-city"
+                        type="text"
+                        placeholder="Albuquerque"
+                    />
+                    City
+                </label>
+            </div>
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="grid-state"
+                >
+                    <select
+                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-state"
+                    >
+                        <option>New Mexico</option>
+                        <option>Missouri</option>
+                        <option>Texas</option>
+                    </select>
+                    State
+                </label>
+                <div className="relative">
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg
+                            className="fill-current h-4 w-4"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                        >
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="grid-zip"
+                >
+                    <input
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-zip"
+                        type="text"
+                        placeholder="90210"
+                    />
+                    Zip
+                </label>
+            </div>
+        </div>
+    </form>
 );
 
-AccountSettingsBilling.getInitialProps = async (ctx: ReduxNextPageContext): Promise<any> => {
+AccountSettingsBilling.getInitialProps = async (
+    ctx: ReduxNextPageContext
+): Promise<any> => {
     const meta = {
-        title: "Trang Chủ",
+        title: "Trang htmlForm",
         description: "Trang chủ",
-        background: "#00999f",
+        background: "#649f65",
     };
     return { namespacesRequired: ["common"], data: {}, meta };
 };

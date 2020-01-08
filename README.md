@@ -48,7 +48,7 @@ Script in package.json:
 * [Front-end with React , Next jS [Tiếng việt]](https://github.com/nguyenvanhoang26041994/dev-experiences/blob/master/front-end/front-end-fast.md)
 * [Tools Build Template CLI next-boilerplate ](https://github.com/pankod/next-boilerplate)
 * [TypeScript](https://codetheworld.io/xay-dung-ung-dung-bang-react-su-dung-typescript.html)
-
+* [React-Hooks-Form](https://react-hook-form.com/)
 ####Todo
 * LURL cache HTML on Server Node
 * Site map 

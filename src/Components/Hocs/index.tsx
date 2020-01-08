@@ -1,1 +1,1 @@
-export { withLayout, withAccountLayout } from "./Layout";
+export { withLayout, withAccountLayout, withFormLayout } from "./Layout";

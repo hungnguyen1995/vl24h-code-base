@@ -26,7 +26,7 @@ const AccountLayout: React.FunctionComponent<LayoutProps> = ({ children }) => {
     return (
         <div className="max-w-xl mx-auto px-8">
             <h1 className="text-2xl text-gray-900 font-semibold">
-                Account Settings
+                Form Tailwindcss
             </h1>
 
             <div

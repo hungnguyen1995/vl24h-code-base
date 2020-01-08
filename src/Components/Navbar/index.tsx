@@ -22,17 +22,22 @@ const Navbar: React.FunctionComponent<INavbar.IProps> = ({
                                 alt=""
                             />
                             <Link href="/">
-                                <a className="ml-8 font-medium text-white">
+                                <a className="ml-2 font-medium text-white">
                                     Home
                                 </a>
                             </Link>
+                            <Link href="/form">
+                                <a className="ml-2 font-medium text-white">
+                                    Form Hooks+Bootstrap
+                                </a>
+                            </Link>
                             <Link href="/profile">
-                                <a className="ml-8 font-medium text-white">
-                                    Account Settings
+                                <a className="ml-2 font-medium text-white">
+                                    TailwinCss
                                 </a>
                             </Link>
                             <Link href="/home">
-                                <a className="ml-8 font-medium text-white">
+                                <a className="ml-2 font-medium text-white">
                                     Test Api Demo
                                 </a>
                             </Link>
