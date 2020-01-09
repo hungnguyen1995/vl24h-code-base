@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { withFormLayout } from "@Components";
+import { withFormLayout, Loading } from "@Components";
 import { ReduxNextPageContext } from "@Interfaces/Pages/App";
 import { useForm } from "react-hook-form";
+import { showLoading, hideLoading } from "@Actions";
+import { useDispatch } from "react-redux";
 
 interface IForm {
     firstName: string;
@@ -10,14 +12,25 @@ interface IForm {
     policy: boolean;
 }
 let renderCount = 0;
+
 const AccountSettingsProfile = () => {
-    const [data, setData] = useState(null);
     renderCount += 1;
+    const [data, setData] = useState(null);
+    const dispatch = useDispatch();
     const { register, errors, handleSubmit, formState } = useForm<IForm>();
     const { touched } = formState;
-    const onSubmit = value => setData(value);
+
+    const onSubmit = value => {
+        dispatch(showLoading("form1"));
+        setTimeout(() => {
+            dispatch(hideLoading("form1"));
+            setData(value);
+        }, 500);
+    };
+
     return (
         <>
+            <Loading idLoading="form1" />
             <div className="row">
                 <div className="col-12 text-center">
                     <span>{`Số lần render: ${renderCount}`}</span>

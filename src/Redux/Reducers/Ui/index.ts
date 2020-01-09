@@ -15,7 +15,7 @@ const INITIAL_STATE: IUI = {
         Component: null,
         childProps: null,
     },
-    loading: false,
+    loading: {},
 };
 
 export const UiReducer = (state = INITIAL_STATE, action: any) => {
@@ -45,6 +45,20 @@ export const UiReducer = (state = INITIAL_STATE, action: any) => {
             return {
                 ...state,
                 toast: action.payload,
+            };
+        case ActionConsts.Ui.show_loading:
+            return {
+                ...state,
+                loading: {
+                    [action.id]: true,
+                },
+            };
+        case ActionConsts.Ui.hide_loading:
+            return {
+                ...state,
+                loading: {
+                    [action.id]: false,
+                },
             };
         default:
             return state;

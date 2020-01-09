@@ -36,3 +36,13 @@ export const showModal = payload => ({
 export const hideModal = () => ({
     type: ActionConsts.Ui.hide_modal,
 });
+
+export const showLoading = (id: string) => ({
+    type: ActionConsts.Ui.show_loading,
+    id,
+});
+
+export const hideLoading = (id: string) => ({
+    type: ActionConsts.Ui.hide_loading,
+    id,
+});

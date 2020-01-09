@@ -12,9 +12,9 @@ AccountSettingsBilling.getInitialProps = async (
     ctx: ReduxNextPageContext
 ): Promise<any> => {
     const meta = {
-        title: "Trang htmlForm",
+        title: "Form Hooks",
         description: "Trang chủ",
-        background: "#9F325C",
+        background: "#836b9d",
     };
     return { namespacesRequired: ["common"], data: {}, meta };
 };

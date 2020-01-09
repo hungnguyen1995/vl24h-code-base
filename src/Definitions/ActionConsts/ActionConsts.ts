@@ -10,5 +10,7 @@ export const ActionConsts = {
         put_toast_errors: "put_toast_errors",
         show_modal: "show_modal",
         hide_modal: "hide_modal",
+        show_loading: "show_loading",
+        hide_loading: "hide_loading",
     },
 };

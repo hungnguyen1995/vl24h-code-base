@@ -7,3 +7,4 @@ export { Toasty } from "@Components/Toasty";
 export { Modal } from "@Components/Modal";
 export { TestForm, TestButton, Button } from "@Components/Basic";
 export { LocaleButton } from "@Components/LocaleButton";
+export { Loading } from "@Components/Loading";

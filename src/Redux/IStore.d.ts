@@ -7,9 +7,13 @@ export interface IToasty {
     uuid: string;
 }
 
+export interface ILoading {
+    [key: string]: boolean;
+}
+
 export interface IUI {
     toast?: IToasty;
-    loading?: any;
+    loading?: ILoading;
     modal?: IModal;
 }
 
