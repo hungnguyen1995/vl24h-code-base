@@ -10,5 +10,6 @@ routes.add("profile", "/profile");
 routes.add("profile/billing", "/profile/billing");
 routes.add("form", "/form");
 routes.add("form/billing", "/form/billing");
+routes.add("form/simple3", "/form/simple3");
 
 export default routes;

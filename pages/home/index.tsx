@@ -131,7 +131,7 @@ const Home: any = ({ t, i18n }) => {
     );
 };
 
-Home.getInitialProps = async (ctx: ReduxNextPageContext): Promise<any> => {
+Home.getInitialProps = async (): Promise<any> => {
     const meta = {
         title: "Trang Chủ",
         description: "Trang chủ",

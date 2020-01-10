@@ -45,7 +45,7 @@ const Index = () => {
     );
 };
 
-Index.getInitialProps = async (ctx: ReduxNextPageContext): Promise<any> => {
+Index.getInitialProps = async (): Promise<any> => {
     const meta = {
         title: "Trang Chủ",
         description: "Trang chủ",

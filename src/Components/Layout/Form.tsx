@@ -35,6 +35,9 @@ const FormLayout: React.FunctionComponent<LayoutProps> = ({ children }) => {
                 <ActiveLink href="/form/billing" className="nav-item">
                     Simple 2
                 </ActiveLink>
+                <ActiveLink href="/form/simple3" className="nav-item">
+                    Simple3
+                </ActiveLink>
             </ul>
             <div className="p-3">{children}</div>
         </div>

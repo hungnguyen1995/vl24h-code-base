@@ -19,7 +19,7 @@ const AccountSettingsProfile = () => {
     const dispatch = useDispatch();
     const { register, errors, handleSubmit, formState } = useForm<IForm>();
     const { touched } = formState;
-
+    console.log(errors, "giá trị: errors")
     const onSubmit = value => {
         dispatch(showLoading("form1"));
         setTimeout(() => {
@@ -132,25 +132,25 @@ const AccountSettingsProfile = () => {
                     </div>
                 </div>
                 <div className="form-group">
-                    <div className="form-check">
+                    <div className="custom-control custom-checkbox mb-3">
+                        <input
+                            type="checkbox"
+                            className="custom-control-input"
+                            id="invalidCheck3"
+                            name="policy"
+                            ref={register({
+                                required: "Vui lòng đồng ý điều khoản",
+                            })}
+                        />
                         <label
-                            className="form-check-label"
+                            className="custom-control-label"
                             htmlFor="invalidCheck3"
                         >
-                            <input
-                                className="form-check-input is-invalid"
-                                type="checkbox"
-                                id="invalidCheck3"
-                                name="policy"
-                                ref={register({
-                                    required: "Vui lòng đồng ý điều khoản",
-                                })}
-                            />
                             Đồng ý điều khoản
-                            <div className="invalid-feedback">
-                                {errors.policy && errors?.policy?.message}
-                            </div>
                         </label>
+                        <div className="invalid-feedback d-block">
+                            {errors.policy && errors?.policy?.message}
+                        </div>
                     </div>
                 </div>
                 <button className="btn btn-primary" type="submit">
@@ -168,9 +168,7 @@ const AccountSettingsProfile = () => {
     );
 };
 
-AccountSettingsProfile.getInitialProps = async (
-    ctx: ReduxNextPageContext
-): Promise<any> => {
+AccountSettingsProfile.getInitialProps = async (): Promise<any> => {
     const meta = {
         title: "Form Hooks",
         description: "Trang chủ",

@@ -118,9 +118,7 @@ const AccountSettingsBilling = () => (
     </form>
 );
 
-AccountSettingsBilling.getInitialProps = async (
-    ctx: ReduxNextPageContext
-): Promise<any> => {
+AccountSettingsBilling.getInitialProps = async (): Promise<any> => {
     const meta = {
         title: "Trang htmlForm",
         description: "Trang chủ",

@@ -43,7 +43,7 @@ const AccountSettingsProfile = () => (
     </div>
 );
 
-AccountSettingsProfile.getInitialProps = async (ctx: ReduxNextPageContext): Promise<any> => {
+AccountSettingsProfile.getInitialProps = async (): Promise<any> => {
     const meta = {
         title: "Trang Chủ",
         description: "Trang chủ",

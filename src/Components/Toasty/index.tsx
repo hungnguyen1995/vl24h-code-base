@@ -9,7 +9,6 @@ const Toasty: React.FunctionComponent = memo(
             (state: IStore) => state.ui.toast,
             shallowEqual
         ) as IToasty;
-        console.count("toat");
         useEffect(() => {
             if (toasty.uuid) {
                 if (toasty.success === 1) {

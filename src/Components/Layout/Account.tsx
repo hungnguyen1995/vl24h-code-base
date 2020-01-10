@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
 export interface LayoutProps {
     children?: any;
 }
@@ -24,7 +25,7 @@ const ActiveLink = ({ children, href, className }) => {
 
 const AccountLayout: React.FunctionComponent<LayoutProps> = ({ children }) => {
     return (
-        <div className="max-w-xl mx-auto px-8">
+        <div className="max-w-2xl mx-auto px-8">
             <h1 className="text-2xl text-gray-900 font-semibold">
                 Form Tailwindcss
             </h1>
