@@ -27,7 +27,7 @@ const ActiveLink = ({ children, href, className }) => {
 
 const FormLayout: React.FunctionComponent<LayoutProps> = ({ children }) => {
     return (
-        <div className="max-w-xl mx-auto px-8 py-5">
+        <div className="max-w-2xl mx-auto px-8 py-5">
             <ul className="nav nav-tabs">
                 <ActiveLink href="/form" className="nav-item">
                     Simple

@@ -18,7 +18,6 @@ const option = [
     { value: 5, label: "Miền Tây" },
     { value: 6, label: "Miền Trung" },
 ];
-
 const SimpleForm2 = () => {
     renderCount += 1;
     const [data, setData] = useState(null);
@@ -40,6 +39,7 @@ const SimpleForm2 = () => {
             setData(value);
         }, 500);
     };
+
     const val = getValues({ nest: true });
     console.log(val, "giá trị: getValues");
     console.log(errors, "giá trị: errors");
@@ -173,7 +173,7 @@ const SimpleForm2 = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="form-row mt-2">
+                    <div className="form-row mt-4">
                         <div className="col-md-12">
                             <div className="custom-file">
                                 <input
